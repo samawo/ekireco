@@ -1,0 +1,25 @@
+<% if @station.active %>
+    <h1><%= @station.name %></h1>
+<% else %>
+    <h1><%= @station.name %><廃駅></h1>
+<% end %>
+
+<h4>所在地：<%= link_to @prefecture.name , prefecture_path(@prefecture.id) %></h4>
+<h4>所属路線一覧</h4>
+<ul>
+    <% @routes.each do |route| %>
+        <li>
+            <% if route.active %>
+                <%= link_to route_path(route.id) do %>
+                    <%= route.name %>
+                <% end %>
+            <% else %>
+                <%= link_to route_path(route.id) do %>
+                    <%= route.name %><廃路線>
+                <% end %>
+            <% end %>
+        </li>
+    <% end %>
+</ul>
+
+    

@@ -1,0 +1,11 @@
+<h1>都道府県一覧</h1>
+
+<ul>
+<% @prefectures.each do |prefecture| %>
+    <li>
+        <%= link_to prefecture_path(prefecture.id) do %>
+            <%= prefecture.name %>(<%= prefecture.number %>駅)
+        <% end %>
+    </li>
+<% end %>
+</ul>

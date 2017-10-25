@@ -1,0 +1,17 @@
+<h1>路線一覧</h1>
+
+<ul>
+<% @routes.each do |route| %>
+    <li>
+        <% if route.active %>
+            <%= link_to route_path(route.id) do %>
+                <%= route.name %>(<%= route.number %>駅)
+            <% end %>
+        <% else %>
+            <%= link_to route_path(route.id) do %>
+                <%= route.name %><廃路線>(<%= route.number %>駅)
+            <% end %>
+        <% end %>
+    </li>
+<% end %>
+</ul>
