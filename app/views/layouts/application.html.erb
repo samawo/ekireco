@@ -36,9 +36,6 @@
             <% if user_signed_in? %>
               <li><%= link_to 'マイページ', edit_user_registration_path %></li>
               <li><%= link_to "ログアウト",destroy_user_session_path,method: :delete %></li>
-              <%= link_to notifications_index_path, class: "navbar-brand" do %>
-                <i class="fa fa-bell fa-1x"><span id="unread_count"><%= @notifications_count %></span></i>
-              <% end %>
             <% else %>
               <li><%= link_to "ログイン",new_user_session_path %></li>
               <li><%= link_to "サインアップ",new_user_registration_path %></li>
@@ -49,11 +46,43 @@
       </div><!-- /.container-fluid -->
     </nav>
   </header>
+  
 
+<div class="container">
+  <section class="main-header">
+    <% if alert  %>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="bs-component">
+            <div class="alert alert-dismissible alert-warning">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <p><%= alert %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <% if notice %>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="bs-component">
+            <div class="alert alert-dismissible  alert-success">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <p><%= notice %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</section>
 <%= yield %>
 
+
+</div>
 <footer>
+  <div>
     <p>作成者：@hogehoge</p>
+  </div>
 </footer>
 
 </body>
