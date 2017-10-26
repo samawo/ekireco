@@ -11,10 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171026070608) do
+ActiveRecord::Schema.define(version: 20171026114129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "complete_prefectures", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "prefecture_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "complete",      default: false
+    t.integer  "number",        default: 0
+  end
+
+  add_index "complete_prefectures", ["prefecture_id"], name: "index_complete_prefectures_on_prefecture_id", using: :btree
+  add_index "complete_prefectures", ["user_id", "prefecture_id"], name: "index_complete_prefectures_on_user_id_and_prefecture_id", unique: true, using: :btree
+  add_index "complete_prefectures", ["user_id"], name: "index_complete_prefectures_on_user_id", using: :btree
+
+  create_table "complete_routes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "route_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "complete",   default: false
+    t.integer  "number",     default: 0
+  end
+
+  add_index "complete_routes", ["route_id"], name: "index_complete_routes_on_route_id", using: :btree
+  add_index "complete_routes", ["user_id", "route_id"], name: "index_complete_routes_on_user_id_and_route_id", unique: true, using: :btree
+  add_index "complete_routes", ["user_id"], name: "index_complete_routes_on_user_id", using: :btree
 
   create_table "prefectures", force: :cascade do |t|
     t.integer  "number"

@@ -6,10 +6,15 @@ class User < ActiveRecord::Base
   
   mount_uploader :avatar, AvatarUploader #deviseの設定配下に追記
   
-  has_many :us_relationships
+  has_many :us_relationships, dependent: :destroy
   has_many :stations, :through => :us_relationships
          
-         
+  has_many :complete_prefectures, dependent: :destroy
+  has_many :prefectures, :through => :complete_prefectures
+  
+  has_many :complete_routes, dependent: :destroy
+  has_many :routes, :through => :complete_routes
+  
   def self.create_unique_string
     SecureRandom.uuid
   end       
@@ -69,5 +74,15 @@ class User < ActiveRecord::Base
   
   def unaccess!(station)
     us_relationships.find_by(station_id: station.id).destroy
+#    cp=current_user.complete_prefectures.find_by(prefecture_id: station.prefecture_id)
+#    cp.number=cp.number-1
+#    cp.complete_prefectures.complete=false
+#    cp.save
+#    crs=current_user.complete_routes.find_by(route_id: station.route_id)
+#    crs.each do |cr|
+#      cr.number=cr.number-1
+#      cr.complete_routes.complete=true
+#      cr.save
+#    end
   end
 end

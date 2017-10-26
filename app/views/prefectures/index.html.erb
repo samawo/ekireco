@@ -6,6 +6,7 @@
         <%= link_to prefecture_path(prefecture.id) do %>
             <%= prefecture.name %>(<%= prefecture.number %>駅)
         <% end %>
+        <% if user_signed_in? %>[<%= current_user.complete_prefectures.find_by(prefecture_id: prefecture.id).number %>/<%= prefecture.number %>]<% end %>
     </li>
 <% end %>
 </ul>
