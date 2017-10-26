@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="container-child col-md-2 col-sm-4 col-xs-6 ">
+        <blockquote>
+      <h2><%= @user.name %></h2>
+      <%= profile_img(@user) %>
+      <%= render 'follow_form', user: @user %>
+      </blockquote>
+    </div>
+
+    
+</div>
