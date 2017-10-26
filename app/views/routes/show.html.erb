@@ -5,20 +5,6 @@
 <% end %>
 
 <h4>所属駅一覧</h4>
-<ul>
-    <% @stations.each do |station| %>
-        <li>
-            <% if station.active %>
-                <%= link_to station_path(station.id) do %>
-                    <%= station.name %>
-                <% end %>
-            <% else %>
-                <%= link_to station_path(station.id) do %>
-                    <%= station.name %><廃駅>
-                <% end %>
-            <% end %>
-        </li>
-    <% end %>
-</ul>
+<%= render 'layouts/station_index',stations: @stations  %>
 
     

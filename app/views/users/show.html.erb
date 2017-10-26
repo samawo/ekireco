@@ -1,9 +1,10 @@
 <div class="container">
-    <div class="container-child col-md-2 col-sm-4 col-xs-6 ">
+    <div class="container-child col-md-12 col-sm-12 col-xs-12 ">
         <blockquote>
       <h2><%= @user.name %></h2>
       <%= profile_img(@user) %>
-      <%= render 'follow_form', user: @user %>
+      <br>
+      <%= link_to "ユーザ情報編集" ,edit_user_registration_path %>
       </blockquote>
     </div>
 

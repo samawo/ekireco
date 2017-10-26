@@ -1,0 +1,22 @@
+
+<ul>
+<% stations.each do |station| %>
+    <li>
+        <% if station.active %>
+            <%= link_to station_path(station.id) do %>
+                <%= station.name %>(<%= station.prefecture.name %>)
+            <% end %>
+            <% if user_signed_in? %>
+                <%= render 'layouts/access_form',station: station  %>
+            <% end %>
+        <% else %>
+            <%= link_to station_path(station.id) do %>
+                <%= station.name %><廃駅>(<%= station.prefecture.name %>)
+            <% end %>
+            <% if user_signed_in? %>
+                <%= render 'layouts/access_form',station: station  %>
+            <% end %>
+        <% end %>
+    </li>
+<% end %>
+</ul>

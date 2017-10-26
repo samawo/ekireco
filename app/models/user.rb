@@ -2,9 +2,12 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   
   mount_uploader :avatar, AvatarUploader #deviseの設定配下に追記
+  
+  has_many :us_relationships
+  has_many :stations, :through => :us_relationships
          
          
   def self.create_unique_string
@@ -56,4 +59,15 @@ class User < ActiveRecord::Base
     end
   end
   
+  def access!(station)
+    us_relationships.create!(station_id: station.id)
+  end
+  
+  def accessing?(station)
+    us_relationships.find_by(station_id: station.id)
+  end
+  
+  def unaccess!(station)
+    us_relationships.find_by(station_id: station.id).destroy
+  end
 end

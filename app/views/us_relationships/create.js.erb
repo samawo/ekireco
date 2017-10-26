@@ -1,0 +1,1 @@
+$("#access_form_"+"<%= @station.id %>").html("<%= escape_javascript(render partial: 'layouts/access_form', locals: { station: @station} ) %>")

@@ -1,0 +1,12 @@
+<div id="access_form_<%= station.id %>">
+  <% unless current_user.accessing?(station) %>
+    <%= form_for(current_user.us_relationships.build(station_id: station.id), remote: true) do |f| %>
+      <%= f.hidden_field :station_id %>
+      <%= f.submit "未アクセス", class: "btn btn-large btn-primary" %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.us_relationships.find_by(station_id: station.id), html: { method: :delete }, remote: true) do |f| %>
+      <%= f.submit "アクセス済", class: "btn btn-large" %>
+    <% end %>
+  <% end %>
+</div>

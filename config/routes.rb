@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'us_relationships/create'
+
+  get 'us_relationships/destroy'
+
   root 'top#index'
 
   devise_for :users, controllers: {
@@ -11,6 +15,8 @@ Rails.application.routes.draw do
   resources :routes, only: [:index,:show]
   
   resources :prefectures, only: [:index,:show]
+  
+  resources :us_relationships, only: [:create, :destroy]
   
   resources :users, only: [:show]
   

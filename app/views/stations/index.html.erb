@@ -1,17 +1,3 @@
 <h1>駅一覧</h1>
 
-<ul>
-<% @stations.each do |station| %>
-    <li>
-        <% if station.active %>
-            <%= link_to station_path(station.id) do %>
-                <%= station.name %>(<%= station.prefecture.name %>)
-            <% end %>
-        <% else %>
-            <%= link_to station_path(station.id) do %>
-                <%= station.name %><廃駅>(<%= station.prefecture.name %>)
-            <% end %>
-        <% end %>
-    </li>
-<% end %>
-</ul>
+<%= render 'layouts/station_index',stations: @stations  %>
