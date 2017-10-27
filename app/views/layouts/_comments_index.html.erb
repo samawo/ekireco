@@ -1,0 +1,26 @@
+<ul>
+  <% comments.each do |comment| %>
+    <% unless comment.id.nil? %>
+      <li>
+        <p class="left"><%= comment.user.name %>さんがコメントしました。</p>
+        <p class="left"><%= comment.content %></p>
+        <% if current_user.id == comment.user.id %>
+          <p class="right">
+            <% if parent.class.name=="Station" %>
+                <%= link_to '', edit_station_station_comment_path(parent, comment), class: "fa fa-pencil-square-o fa-lg" %>
+                <%= link_to '', station_station_comment_path(parent, comment), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
+            <% end %>
+            <% if parent.class.name=="Route" %>
+                <%= link_to '', edit_route_route_comment_path(parent, comment), class: "fa fa-pencil-square-o fa-lg" %>
+                <%= link_to '', route_route_comment_path(parent, comment), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
+            <% end %>
+            <% if parent.class.name=="Prefecture" %>
+                <%= link_to '', edit_prefecture_prefecture_comment_path(parent, comment), class: "fa fa-pencil-square-o fa-lg" %>
+                <%= link_to '', prefecture_prefecture_comment_path(parent, comment), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
+            <% end %>
+          </p>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

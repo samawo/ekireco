@@ -22,4 +22,11 @@
     <% end %>
 </ul>
 
+<p>コメント一覧</p>
+    <div id="comments_area">
+      <%= render partial: 'layouts/comments_index', locals: { comments: @station_comments, parent: @station } %>
+    </div>
+    <%= render partial: 'layouts/comments_form', locals: { comment: @station_comment, parent: @station } %>
+    <%= link_to '戻る', stations_path %>
+
     

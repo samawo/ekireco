@@ -1,0 +1,2 @@
+$("#comments_area").html("<%= j(render 'layouts/comments_index', { comments: @prefecture_comment.prefecture.comments, parent: @prefecture_comment.prefecture }) %>")
+$(':text').val('')

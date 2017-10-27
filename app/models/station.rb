@@ -5,4 +5,6 @@ class Station < ActiveRecord::Base
     
     has_many :us_relationships
     has_many :users, :through => :us_relationships
+    
+    has_many :station_comments, dependent: :destroy
 end

@@ -1,0 +1,2 @@
+$("#comments_area").html("<%= j(render 'layouts/comments_index', { comments: @route_comment.route.comments, parent: @route_comment.route }) %>")
+$(':text').val('')

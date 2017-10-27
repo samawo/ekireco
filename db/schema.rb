@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171026114129) do
+ActiveRecord::Schema.define(version: 20171027020402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,12 +42,34 @@ ActiveRecord::Schema.define(version: 20171026114129) do
   add_index "complete_routes", ["user_id", "route_id"], name: "index_complete_routes_on_user_id_and_route_id", unique: true, using: :btree
   add_index "complete_routes", ["user_id"], name: "index_complete_routes_on_user_id", using: :btree
 
+  create_table "prefecture_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "prefecture_id"
+    t.text     "content"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "prefecture_comments", ["prefecture_id"], name: "index_prefecture_comments_on_prefecture_id", using: :btree
+  add_index "prefecture_comments", ["user_id"], name: "index_prefecture_comments_on_user_id", using: :btree
+
   create_table "prefectures", force: :cascade do |t|
     t.integer  "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "name"
   end
+
+  create_table "route_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "route_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "route_comments", ["route_id"], name: "index_route_comments_on_route_id", using: :btree
+  add_index "route_comments", ["user_id"], name: "index_route_comments_on_user_id", using: :btree
 
   create_table "routes", force: :cascade do |t|
     t.integer  "number"
@@ -67,6 +89,17 @@ ActiveRecord::Schema.define(version: 20171026114129) do
   add_index "rs_relationships", ["route_id"], name: "index_rs_relationships_on_route_id", using: :btree
   add_index "rs_relationships", ["station_id", "route_id"], name: "index_rs_relationships_on_station_id_and_route_id", unique: true, using: :btree
   add_index "rs_relationships", ["station_id"], name: "index_rs_relationships_on_station_id", using: :btree
+
+  create_table "station_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "station_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "station_comments", ["station_id"], name: "index_station_comments_on_station_id", using: :btree
+  add_index "station_comments", ["user_id"], name: "index_station_comments_on_user_id", using: :btree
 
   create_table "stations", force: :cascade do |t|
     t.integer  "prefecture_id"
@@ -112,4 +145,10 @@ ActiveRecord::Schema.define(version: 20171026114129) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
+  add_foreign_key "prefecture_comments", "prefectures"
+  add_foreign_key "prefecture_comments", "users"
+  add_foreign_key "route_comments", "routes"
+  add_foreign_key "route_comments", "users"
+  add_foreign_key "station_comments", "stations"
+  add_foreign_key "station_comments", "users"
 end

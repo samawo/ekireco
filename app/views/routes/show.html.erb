@@ -7,4 +7,9 @@
 <h4>所属駅一覧</h4>
 <%= render 'layouts/station_index',stations: @stations  %>
 
-    
+<p>コメント一覧</p>
+    <div id="comments_area">
+      <%= render partial: 'layouts/comments_index', locals: { comments: @route_comments, parent: @route } %>
+    </div>
+    <%= render partial: 'layouts/comments_form', locals: { comment: @route_comment, parent: @route } %>
+    <%= link_to '戻る', routes_path %>

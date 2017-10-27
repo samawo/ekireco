@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   has_many :complete_routes, dependent: :destroy
   has_many :routes, :through => :complete_routes
   
+  has_many :station_comments, dependent: :destroy
+  has_many :route_comments, dependent: :destroy
+  has_many :prefecture_comments, dependent: :destroy
+  
   def self.create_unique_string
     SecureRandom.uuid
   end       

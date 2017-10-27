@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'us_relationships/create'
 
   get 'us_relationships/destroy'
@@ -10,11 +11,17 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
   
-  resources :stations, only: [:index,:show]
+  resources :stations, only: [:index,:show] do
+    resources :station_comments
+  end
   
-  resources :routes, only: [:index,:show]
+  resources :routes, only: [:index,:show] do
+    resources :route_comments
+  end
   
-  resources :prefectures, only: [:index,:show]
+  resources :prefectures, only: [:index,:show] do
+    resources :prefecture_comments
+  end
   
   resources :us_relationships, only: [:create, :destroy]
   
