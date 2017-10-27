@@ -37,6 +37,12 @@ class User < ActiveRecord::Base
       )
       #user.skip_confirmation!
       user.save(validate: false)
+      Prefecture.all.each do |prefecture|
+        user.complete_prefectures.build(prefecture_id: prefecture.id).save
+      end
+      Route.all.each do |route|
+        user.complete_routes.build(route_id: route.id).save
+      end
     end
     user
   end
@@ -54,6 +60,12 @@ class User < ActiveRecord::Base
           password: Devise.friendly_token[0, 20]
       )
       user.save
+      Prefecture.all.each do |prefecture|
+        user.complete_prefectures.build(prefecture_id: prefecture.id).save
+      end
+      Route.all.each do |route|
+        user.complete_routes.build(route_id: route.id).save
+      end
     end
     user
   end
