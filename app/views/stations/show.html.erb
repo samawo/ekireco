@@ -26,7 +26,9 @@
     <div id="comments_area">
       <%= render partial: 'layouts/comments_index', locals: { comments: @station_comments, parent: @station } %>
     </div>
+    <% if user_signed_in? %>
     <%= render partial: 'layouts/comments_form', locals: { comment: @station_comment, parent: @station } %>
+<% end %>
     <%= link_to '戻る', stations_path %>
 
     

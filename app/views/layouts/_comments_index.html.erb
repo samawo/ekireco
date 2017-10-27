@@ -4,21 +4,23 @@
       <li>
         <p class="left"><%= comment.user.name %>さんがコメントしました。</p>
         <p class="left"><%= comment.content %></p>
+        <% if user_signed_in? %>
         <% if current_user.id == comment.user.id %>
           <p class="right">
             <% if parent.class.name=="Station" %>
-                <%= link_to '', edit_station_station_comment_path(parent, comment), class: "fa fa-pencil-square-o fa-lg" %>
-                <%= link_to '', station_station_comment_path(parent, comment), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
+                <%= link_to '編集', edit_station_station_comment_path(parent, comment), class: "fa fa-pencil-square-o fa-lg" %>
+                <%= link_to '削除', station_station_comment_path(parent, comment), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
             <% end %>
             <% if parent.class.name=="Route" %>
-                <%= link_to '', edit_route_route_comment_path(parent, comment), class: "fa fa-pencil-square-o fa-lg" %>
-                <%= link_to '', route_route_comment_path(parent, comment), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
+                <%= link_to '編集', edit_route_route_comment_path(parent, comment), class: "fa fa-pencil-square-o fa-lg" %>
+                <%= link_to '削除', route_route_comment_path(parent, comment), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
             <% end %>
             <% if parent.class.name=="Prefecture" %>
-                <%= link_to '', edit_prefecture_prefecture_comment_path(parent, comment), class: "fa fa-pencil-square-o fa-lg" %>
-                <%= link_to '', prefecture_prefecture_comment_path(parent, comment), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
+                <%= link_to '編集', edit_prefecture_prefecture_comment_path(parent, comment), class: "fa fa-pencil-square-o fa-lg" %>
+                <%= link_to '削除', prefecture_prefecture_comment_path(parent, comment), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
             <% end %>
           </p>
+        <% end %>
         <% end %>
       </li>
     <% end %>

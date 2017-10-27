@@ -3,9 +3,12 @@
 <h4>駅一覧</h4>
 <%= render 'layouts/station_index',stations: @stations  %>
 
+
 <p>コメント一覧</p>
     <div id="comments_area">
       <%= render partial: 'layouts/comments_index', locals: { comments: @prefecture_comments, parent: @prefecture } %>
     </div>
+    <% if user_signed_in? %>
     <%= render partial: 'layouts/comments_form', locals: { comment: @prefecture_comment, parent: @prefecture } %>
+<% end %>
     <%= link_to '戻る', prefectures_path %>
