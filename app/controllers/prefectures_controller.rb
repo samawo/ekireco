@@ -1,6 +1,7 @@
 class PrefecturesController < ApplicationController
   def index
     @prefectures=Prefecture.all
+    @prefectures=@prefectures.sort{|a,b| a.id<=>b.id}
   end
 
   def show

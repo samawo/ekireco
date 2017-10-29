@@ -1,6 +1,7 @@
 class StationsController < ApplicationController
   def index
     @stations=Station.all
+    @stations=@stations.sort{|a,b| a.id<=>b.id}
   end
 
   def show

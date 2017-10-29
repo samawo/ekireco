@@ -1,6 +1,7 @@
 class RoutesController < ApplicationController
   def index
     @routes=Route.all
+    @routes=@routes.sort{|a,b| a.id<=>b.id}
   end
 
   def show
