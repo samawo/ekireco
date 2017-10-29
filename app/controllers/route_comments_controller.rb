@@ -24,7 +24,7 @@ class RouteCommentsController < ApplicationController
   def update
     @route_comment=RouteComment.find(params[:id])
     @route_comment.update(route_comment_params)
-    @route=@rotue_comment.route
+    @route=@route_comment.route
     respond_to do |format|
       if @route_comment.save
         format.html { redirect_to route_path(@route), notice: 'コメントを編集しました。' }
