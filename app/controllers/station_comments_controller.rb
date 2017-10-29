@@ -32,6 +32,7 @@ class StationCommentsController < ApplicationController
         format.js { render :index }
       else
         format.html { render :new }
+        format.js { redirect_to prefecture_path(@prefecture) ,notice: "値を入力してください。"}
       end
     end
   end
