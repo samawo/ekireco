@@ -16,6 +16,26 @@ class StationCommentsController < ApplicationController
     end
   end
   
+  def edit
+    @station_comment=StationComment.find(params[:id])
+    @station=@station_comment.station
+  end
+
+  def update
+    @station_comment=StationComment.find(params[:id])
+    @station_comment.update(station_comment_params)
+    @station=@station_comment.station
+    respond_to do |format|
+      if @station_comment.save
+        format.html { redirect_to station_path(@station), notice: 'コメントを編集しました。' }
+        # JS形式でレスポンスを返します。
+        format.js { render :index }
+      else
+        format.html { render :new }
+      end
+    end
+  end
+  
   def destroy
     @station_comment = StationComment.find(params[:id])
     respond_to do |format|

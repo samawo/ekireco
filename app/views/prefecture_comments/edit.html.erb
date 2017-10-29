@@ -1,0 +1,19 @@
+<%= form_for([@prefecture,@prefecture_comment]) do |f| %>
+  <% if @prefecture_comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @prefecture_comment.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @prefecture_comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :prefecture_id %>
+  <div class="field">
+    <%= f.text_field :content, placeholder: "内容", class: "form-control"  %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -16,6 +16,26 @@ class PrefectureCommentsController < ApplicationController
     end
   end
   
+  def edit
+    @prefecture_comment=PrefectureComment.find(params[:id])
+    @prefecture=@prefecture_comment.prefecture
+  end
+
+  def update
+    @prefecture_comment=PrefectureComment.find(params[:id])
+    @prefecture_comment.update(prefecture_comment_params)
+    @prefecture=@prefecture_comment.prefecture
+    respond_to do |format|
+      if @prefecture_comment.save
+        format.html { redirect_to prefecture_path(@prefecture), notice: 'コメントを編集しました。' }
+        # JS形式でレスポンスを返します。
+        format.js { render :index }
+      else
+        format.html { render :new }
+      end
+    end
+  end
+  
   def destroy
     @prefecture_comment = PrefectureComment.find(params[:id])
     respond_to do |format|

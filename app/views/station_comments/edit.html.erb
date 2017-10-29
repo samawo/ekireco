@@ -1,0 +1,19 @@
+<%= form_for([@station,@station_comment]) do |f| %>
+  <% if @station_comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @station_comment.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @station_comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :station_id %>
+  <div class="field">
+    <%= f.text_field :content, placeholder: "内容", class: "form-control"  %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
