@@ -6,7 +6,7 @@ class RoutesController < ApplicationController
 
   def show
     @route=Route.find(params[:id])
-    @stations=@route.stations
+    @stations=@route.stations.sort{|a,b| a.id<=>b.id}
     @route_comment=@route.route_comments.build
     @route_comments=@route.route_comments
   end

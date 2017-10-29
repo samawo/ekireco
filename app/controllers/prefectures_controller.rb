@@ -6,7 +6,7 @@ class PrefecturesController < ApplicationController
 
   def show
     @prefecture=Prefecture.find(params[:id])
-    @stations=@prefecture.stations
+    @stations=@prefecture.stations.sort{|a,b| a.id<=>b.id}
     @prefecture_comment=@prefecture.prefecture_comments.build
     @prefecture_comments=@prefecture.prefecture_comments
   end
