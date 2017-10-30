@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'twitter/tweet'
+
   get 'tweet/tweet'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
