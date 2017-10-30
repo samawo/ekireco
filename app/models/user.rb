@@ -31,7 +31,6 @@ class User < ActiveRecord::Base
           name:     auth.extra.raw_info.name,
           provider: auth.provider,
           uid:      auth.uid,
-          token:    auth.credentials.token,
           email:    "#{auth.uid}-#{auth.provider}@example.com",
           image_url:   auth.info.image,
           password: Devise.friendly_token[0, 20]
@@ -57,8 +56,6 @@ class User < ActiveRecord::Base
           image_url: auth.info.image,
           provider: auth.provider,
           uid:      auth.uid,
-          token:    auth.credentials.token,
-          secret:   auth.credentials.secret,
           email:    "#{auth.uid}-#{auth.provider}@example.com",
           password: Devise.friendly_token[0, 20]
       )
