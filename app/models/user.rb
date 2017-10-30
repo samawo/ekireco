@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
 
     unless user
       user = User.new(
-          name:     auth.info.nickname,##S
+          name:     auth.info.name,##S
           image_url: auth.info.image,
           provider: auth.provider,
           uid:      auth.uid,
