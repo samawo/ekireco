@@ -13,7 +13,7 @@ class TweetController < ApplicationController
       config.access_token_secret  = auth.credentials.secret
     end
     # Twitter投稿
-    client.update("test")
-    redirect_to root_path, notice: 'ツイートしました！'
+    #client.update("test")
+    #redirect_to root_path, notice: 'ツイートしました！'
   end
 end
