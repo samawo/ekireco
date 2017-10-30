@@ -223,6 +223,7 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_oauth (0.3.1)
     spring (2.0.2)
       activesupport (>= 4.2)
     sprockets (3.7.1)
@@ -239,6 +240,10 @@ GEM
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.3)
+    twitter (4.4.2)
+      faraday (~> 0.8)
+      multi_json (~> 1.3)
+      simple_oauth (~> 0.2)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
@@ -278,6 +283,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   spring
   turbolinks
+  twitter
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 
