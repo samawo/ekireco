@@ -53,12 +53,12 @@ class User < ActiveRecord::Base
 
     unless user
       user = User.new(
-          name:     auth.info.nickname,##S
+          name:     auth.info.name,##S
           image_url: auth.info.image,
           provider: auth.provider,
           uid:      auth.uid,
           token:    auth.credentials.token,
-          sercret:  auth.credentials.secret,
+          secret:  auth.credentials.secret,
           email:    "#{auth.uid}-#{auth.provider}@example.com",
           password: Devise.friendly_token[0, 20]
       )
