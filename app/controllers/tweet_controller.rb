@@ -1,6 +1,6 @@
 class TweetController < ApplicationController
   def tweet
-    auth = request.env["omniauth.auth"]
+    #auth = request.env["omniauth.auth"]
     client = Twitter::REST::Client.new do |config|
       # applicationの設定
       config.consumer_key         = ENV['TWITTER_ID_PRODUCTION']
