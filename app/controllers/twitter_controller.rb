@@ -1,7 +1,7 @@
 class TwitterController < ApplicationController
   require 'twitter'
   def tweet
-    auth = request.env["omniauth.auth"]
+    #auth = request.env["omniauth.auth"]
     client = Twitter.configure do |config|
       # applicationの設定
       config.consumer_key         = ENV['TWITTER_ID_PRODUCTION']
@@ -10,8 +10,10 @@ class TwitterController < ApplicationController
       #user_auth = current_user.authentications.first
       #config.access_token         = user_auth.token
       #config.access_token_secret  = user_auth.secret
-      config.access_token         = auth.credentials.token
-      config.access_token_secret  = auth.credentials.secret
+      #config.access_token         = auth.credentials.token
+      #config.access_token_secret  = auth.credentials.secret
+      config.access_token         = current_user.token
+      config.access_token_secret  = current_user.secret
     end
     # Twitter投稿
     client.update("test")
