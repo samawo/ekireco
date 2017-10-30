@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
           provider: auth.provider,
           uid:      auth.uid,
           token:    auth.credentials.token,
-          secret:  auth.credentials.secret,
+          secret:   auth.credentials.secret,
           email:    "#{auth.uid}-#{auth.provider}@example.com",
           password: Devise.friendly_token[0, 20]
       )
