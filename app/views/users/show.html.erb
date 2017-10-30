@@ -4,9 +4,51 @@
       <h2><%= @user.name %></h2>
       <%= profile_img(@user) %>
       <br>
+      <div class="bs-component">
+          <div class="well">
+              <p><%= @user.vio %></p>
+          </div>
+      </div>
+      <p>アクセス都道府県数<% count=0 %><% @user.complete_prefectures.each do |n| %><% if n.number!= 0 %><% count=count+1 %><% end %><% end %>[<%= count %>/<%= Prefecture.count %>]</p>
+      <p>制覇都道府県数<% count=0 %><% @user.complete_prefectures.each do |n| %><% if n.complete %><% count=count+1 %><% end %><% end %>[<%= count %>/<%= Prefecture.count %>]</p>
+      <p>アクセス路線数<% count=0 %><% @user.complete_routes.each do |n| %><% if n.number!= 0 %><% count=count+1 %><% end %><% end %>[<%= count %>/<%= Route.count %>]</p>
+      <p>制覇路線数<% count=0 %><% @user.complete_routes.each do |n| %><% if n.complete %><% count=count+1 %><% end %><% end %>[<%= count %>/<%= Route.count %>]</p>
+      <p>アクセス駅数[<%= @user.stations.count %>/<%= Station.count %>]</p>
       <%= link_to "ユーザ情報編集" ,edit_user_registration_path %>
       </blockquote>
     </div>
-
+    <div class="container-child col-md-4 col-sm-12 col-xs-12 ">
+        <div class="bs-component">
+            <p>都道府県</p>
+            <table class="table table-striped table-hover ">
+                <tbody>
+                    <% @prefectures.each do |prefecture| %>
+                        <tr>
+                            <td><%= link_to prefecture_path(prefecture.id) do %> <%= prefecture.name %><% end %>[<%= @user.complete_prefectures.find_by(prefecture_id: prefecture.id).number %>/<%= prefecture.number %>] <% if @user.complete_prefectures.find_by(prefecture_id: prefecture.id).complete %><span class="label label-primary">Complete!</span><% end %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="container-child col-md-4 col-sm-12 col-xs-12 ">
+        <div class="bs-component">
+            <p>路線</p>
+            <table class="table table-striped table-hover ">
+                <tbody>
+                    <% @routes.each do |route| %>
+                        <tr>
+                            <td><%= link_to route_path(route.id) do %><%= route.name %><% end %>[<%= @user.complete_routes.find_by(route_id: route.id).number %>/<%= route.number %>]  <% if @user.complete_routes.find_by(route_id: route.id).complete %><span class="label label-primary">Complete!</span><% end %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container-child col-md-4 col-sm-12 col-xs-12 ">
+        <p>駅</p>
+        <%= render 'layouts/station_index',stations: @stations  %>
+    </div>
     
 </div>

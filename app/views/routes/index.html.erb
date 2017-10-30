@@ -7,12 +7,12 @@
             <%= link_to route_path(route.id) do %>
                 <%= route.name %>(<%= route.number %>駅)
             <% end %>
-            <% if user_signed_in? %>[<%= current_user.complete_routes.find_by(route_id: route.id).number %>/<%= route.number %>]<% end %>
+            <% if user_signed_in? %>[<%= current_user.complete_routes.find_by(route_id: route.id).number %>/<%= route.number %>]  <% if current_user.complete_routes.find_by(route_id: route.id).complete %><span class="label label-primary">Complete!</span><% end %><% end %>
         <% else %>
             <%= link_to route_path(route.id) do %>
                 <%= route.name %><廃路線>(<%= route.number %>駅)
             <% end %>
-            <% if user_signed_in? %>[<%= current_user.complete_routes.find_by(route_id: route.id).number %>/<%= route.number %>]<% end %>
+            <% if user_signed_in? %>[<%= current_user.complete_routes.find_by(route_id: route.id).number %>/<%= route.number %>]  <% if current_user.complete_routes.find_by(route_id: route.id).complete %><span class="label label-primary">Complete!</span><% end %><% end %>
         <% end %>
     </li>
 <% end %>
