@@ -11,8 +11,8 @@ class TwitterController < ApplicationController
       #user_auth = current_user.authentications.first
       #config.access_token         = user_auth.token
       #config.access_token_secret  = user_auth.secret
-      config.access_token         = current_user.decrypt(current_user.token)
-      config.access_token_secret  = current_user.decrypt(current_user.secret)
+      config.access_token         = User.decrypt(current_user.token)
+      config.access_token_secret  = User.decrypt(current_user.secret)
       #config.access_token         = current_user.token
       #config.access_token_secret  = current_user.secret
     end
