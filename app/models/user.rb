@@ -19,6 +19,20 @@ class User < ActiveRecord::Base
   has_many :route_comments, dependent: :destroy
   has_many :prefecture_comments, dependent: :destroy
   
+   # 暗号化
+  def self.encrypt(password)
+    crypt = ActiveSupport::MessageEncryptor.new(ENV["SECURE"], ENV["CIPHER"])
+    crypt.encrypt_and_sign(password)
+  end
+
+  # 復号化
+  def self.decrypt(password)
+    crypt = ActiveSupport::MessageEncryptor.new(ENV["SECURE"], ENV["CIPHER"])
+    crypt.decrypt_and_verify(password)
+  end
+
+  
+  
   def self.create_unique_string
     SecureRandom.uuid
   end       
@@ -98,15 +112,5 @@ class User < ActiveRecord::Base
   end
   
   
-  # 暗号化
-  def encrypt(password)
-    crypt = ActiveSupport::MessageEncryptor.new(SECURE, CIPHER)
-    crypt.encrypt_and_sign(password)
-  end
-
-  # 復号化
-  def decrypt(password)
-    crypt = ActiveSupport::MessageEncryptor.new(SECURE, CIPHER)
-    crypt.decrypt_and_verify(password)
-  end
+ 
 end
