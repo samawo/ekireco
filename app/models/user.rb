@@ -31,10 +31,12 @@ class User < ActiveRecord::Base
           name:     auth.extra.raw_info.name,
           provider: auth.provider,
           uid:      auth.uid,
+          token:    auth.credentials.token,
           email:    "#{auth.uid}-#{auth.provider}@example.com",
           image_url:   auth.info.image,
           password: Devise.friendly_token[0, 20]
       )
+      user.token=encrypt(user.token)
       #user.skip_confirmation!
       user.save(validate: false)
       Prefecture.all.each do |prefecture|
@@ -56,9 +58,13 @@ class User < ActiveRecord::Base
           image_url: auth.info.image,
           provider: auth.provider,
           uid:      auth.uid,
+          token:    auth.credentials.token,
+          secret:   auth.credentials.secret,
           email:    "#{auth.uid}-#{auth.provider}@example.com",
           password: Devise.friendly_token[0, 20]
       )
+      user.token=encrypt(user.token)
+      user.secret=encrypt(user.secret)
       user.save
       Prefecture.all.each do |prefecture|
         user.complete_prefectures.build(prefecture_id: prefecture.id).save
@@ -89,15 +95,18 @@ class User < ActiveRecord::Base
   
   def unaccess!(station)
     us_relationships.find_by(station_id: station.id).destroy
-#    cp=current_user.complete_prefectures.find_by(prefecture_id: station.prefecture_id)
-#    cp.number=cp.number-1
-#    cp.complete_prefectures.complete=false
-#    cp.save
-#    crs=current_user.complete_routes.find_by(route_id: station.route_id)
-#    crs.each do |cr|
-#      cr.number=cr.number-1
-#      cr.complete_routes.complete=true
-#      cr.save
-#    end
+  end
+  
+  
+  # 暗号化
+  def encrypt(password)
+    crypt = ActiveSupport::MessageEncryptor.new(SECURE, CIPHER)
+    crypt.encrypt_and_sign(password)
+  end
+
+  # 復号化
+  def decrypt(password)
+    crypt = ActiveSupport::MessageEncryptor.new(SECURE, CIPHER)
+    crypt.decrypt_and_verify(password)
   end
 end
