@@ -24,36 +24,36 @@ class TwitterController < ApplicationController
     end
     precomp=0
     current_user.complete_prefectures.each do |n|
-      if n.number!= 0
+      if n.complete
         precomp=precomp+1
       end
     end
     routecount=0
-    current_user.complete_prefectures.each do |n|
+    current_user.complete_routes.each do |n|
       if n.number!= 0
         routecount=routecount+1
       end
     end
     routecomp=0
-    current_user.complete_prefectures.each do |n|
-      if n.number!= 0
+    current_user.complete_routes.each do |n|
+      if n.complete
         routecomp=routecomp+1
       end
     end
     
      # Twitter投稿
     twiText="現在のステータス\nアクセス都道府県数："
-    twiText+=string(precount)
+    twiText+=precount.to_s
     twiText+="\n制覇都道府県数："
-    twiText+=string(precomp)
+    twiText+=precomp.to_s
     twiText+="\nアクセス路線数："
-    twiText+=string(routecount)
+    twiText+=routecount.to_s
     twiText+="\n制覇路線数："
-    twiText+=string(routecomp)
+    twiText+=routecomp.to_s
     twiText+="\nアクセス駅数："
-    twiText+=string(routecomp)
+    twiText+=routecomp.to_s
     twiText+="\nhttps://station-record.herokuapp.com/users/"
-    twiText+=string(current_user.id)
+    twiText+=current_user.id.to_s
     client.update(twiText)
     redirect_to root_path, notice: 'ツイートしました！'
   end
