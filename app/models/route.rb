@@ -6,4 +6,7 @@ class Route < ActiveRecord::Base
     has_many :users, :through => :complete_routes
     
     has_many :route_comments, dependent: :destroy
+    
+    has_many :pr_relationships
+    has_many :prefectures, :through => :pr_relationships
 end

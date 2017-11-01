@@ -1,12 +1,29 @@
+<div class="container">
+    <div class="container-child col-md-12 col-sm-12 col-xs-12 ">
 <% if @route.active %>
     <h1><%= @route.name %>(<%= @route.number %>駅)<% if user_signed_in? %>[<%= current_user.complete_routes.find_by(route_id: @route.id).number %>/<%= @route.number %>]  <% if current_user.complete_routes.find_by(route_id: @route.id).complete %><span class="label label-primary">Complete!</span><% end %><% end %></h1>
 <% else %>
     <h1><%= @route.name %><廃路線>(<%= @route.number %>駅)<% if user_signed_in? %>[<%= current_user.complete_routes.find_by(route_id: @route.id).number %>/<%= @route.number %>]  <% if current_user.complete_routes.find_by(route_id: @route.id).complete %><span class="label label-primary">Complete!</span><% end %><% end %></h1>
 <% end %>
+<h4>所在地</h4>
+<ul>
+    <% @route.prefectures.each do |prefecture| %>
+        <li>
+            <%= link_to prefecture_path(prefecture.id) do %>
+                <%= prefecture.name %>
+            <% end %>
+        </li>
+    <% end %>
+</ul>
 
+</div>
+</div>
+
+<div class="container-child col-md-6 col-sm-12 col-xs-12 ">
 <h4>所属駅一覧</h4>
 <%= render 'layouts/station_index',stations: @stations  %>
-
+</div>
+<div class="container-child col-md-6 col-sm-12 col-xs-12 ">
 <p>コメント一覧</p>
     <div id="comments_area">
       <%= render partial: 'layouts/comments_index', locals: { comments: @route_comments, parent: @route } %>
@@ -14,4 +31,6 @@
     <% if user_signed_in? %>
     <%= render partial: 'layouts/comments_form', locals: { comment: @route_comment, parent: @route } %>
 <% end %>
-    <%= link_to '戻る', routes_path %>
+</div>
+
+    

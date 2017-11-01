@@ -1,9 +1,67 @@
+<div class="container">
+    <div class="container-child col-md-12 col-sm-12 col-xs-12 ">
 <h1><%= @prefecture.name %>(<%= @prefecture.number %>駅)<% if user_signed_in? %>[<%= current_user.complete_prefectures.find_by(prefecture_id: @prefecture.id).number %>/<%= @prefecture.number %>] <% if current_user.complete_prefectures.find_by(prefecture_id: @prefecture.id).complete %><span class="label label-primary">Complete!</span><% end %><% end %></h1>
+</div>
+</div>
 
-<h4>駅一覧</h4>
-<%= render 'layouts/station_index',stations: @stations  %>
 
+<div class="container-child col-md-4 col-sm-12 col-xs-12 ">
+        <div class="bs-component">
+            <h4>路線一覧</h4>
+            <table class="table table-striped table-hover ">
+                <tbody>
+<% @routes.each do |route| %>
+    <tr>
+                            <td>
+        <% if route.active %>
+            <%= link_to route_path(route.id) do %>
+                <%= route.name %>
+            <% end %>
+        <% else %>
+            <%= link_to route_path(route.id) do %>
+                <%= route.name %><廃路線>
+            <% end %>
+        <% end %>
+    </td>
+                        </tr>
+<% end %>
+</tbody>
+            </table>
+        </div>
+</div>
 
+ <div class="container-child col-md-4 col-sm-12 col-xs-12 ">
+        <div class="bs-component">
+            <h4>駅一覧</h4>
+            <table class="table table-striped table-hover ">
+                <tbody>
+<% @stations.each do |station| %>
+    <tr>
+                            <td>
+        <% if station.active %>
+            <%= link_to station_path(station.id) do %>
+                <%= station.name %>
+            <% end %>
+            <% if user_signed_in? %>
+                <%= render 'layouts/access_form',station: station %>
+            <% end %>
+        <% else %>
+            <%= link_to station_path(station.id) do %>
+                <%= station.name %><廃駅>
+            <% end %>
+            <% if user_signed_in? %>
+                <%= render 'layouts/access_form',station: station  %>
+            <% end %>
+        <% end %>
+    </td>
+                        </tr>
+<% end %>
+</tbody>
+            </table>
+        </div>
+</div>
+
+<div class="container-child col-md-4 col-sm-12 col-xs-12 ">
 <p>コメント一覧</p>
     <div id="comments_area">
       <%= render partial: 'layouts/comments_index', locals: { comments: @prefecture_comments, parent: @prefecture } %>
@@ -11,4 +69,4 @@
     <% if user_signed_in? %>
     <%= render partial: 'layouts/comments_form', locals: { comment: @prefecture_comment, parent: @prefecture } %>
 <% end %>
-    <%= link_to '戻る', prefectures_path %>
+</div></div>

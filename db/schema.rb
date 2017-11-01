@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031014514) do
+ActiveRecord::Schema.define(version: 20171031152114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 20171031014514) do
   add_index "complete_routes", ["route_id"], name: "index_complete_routes_on_route_id", using: :btree
   add_index "complete_routes", ["user_id", "route_id"], name: "index_complete_routes_on_user_id_and_route_id", unique: true, using: :btree
   add_index "complete_routes", ["user_id"], name: "index_complete_routes_on_user_id", using: :btree
+
+  create_table "pr_relationships", force: :cascade do |t|
+    t.integer  "prefecture_id"
+    t.integer  "route_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "pr_relationships", ["prefecture_id", "route_id"], name: "index_pr_relationships_on_prefecture_id_and_route_id", unique: true, using: :btree
+  add_index "pr_relationships", ["prefecture_id"], name: "index_pr_relationships_on_prefecture_id", using: :btree
+  add_index "pr_relationships", ["route_id"], name: "index_pr_relationships_on_route_id", using: :btree
 
   create_table "prefecture_comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -77,6 +88,9 @@ ActiveRecord::Schema.define(version: 20171031014514) do
     t.datetime "updated_at",                null: false
     t.string   "name"
     t.boolean  "active",     default: true
+    t.integer  "route_cord"
+    t.integer  "longitude"
+    t.integer  "latitude"
   end
 
   create_table "rs_relationships", force: :cascade do |t|
@@ -103,10 +117,14 @@ ActiveRecord::Schema.define(version: 20171031014514) do
 
   create_table "stations", force: :cascade do |t|
     t.integer  "prefecture_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "name"
-    t.boolean  "active",        default: true
+    t.boolean  "active",             default: true
+    t.integer  "station_cord"
+    t.integer  "station_group_cord"
+    t.integer  "longitude"
+    t.integer  "latitude"
   end
 
   create_table "us_relationships", force: :cascade do |t|

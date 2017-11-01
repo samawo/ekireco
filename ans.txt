@@ -1,0 +1,176 @@
+-- enable_extension("plpgsql")
+   -> 0.0255s
+-- create_table("complete_prefectures", {:force=>:cascade})
+   -> 0.0308s
+-- add_index("complete_prefectures", ["prefecture_id"], {:name=>"index_complete_prefectures_on_prefecture_id", :using=>:btree})
+   -> 0.0136s
+-- add_index("complete_prefectures", ["user_id", "prefecture_id"], {:name=>"index_complete_prefectures_on_user_id_and_prefecture_id", :unique=>true, :using=>:btree})
+   -> 0.0136s
+-- add_index("complete_prefectures", ["user_id"], {:name=>"index_complete_prefectures_on_user_id", :using=>:btree})
+   -> 0.0107s
+-- create_table("complete_routes", {:force=>:cascade})
+   -> 0.0208s
+-- add_index("complete_routes", ["route_id"], {:name=>"index_complete_routes_on_route_id", :using=>:btree})
+   -> 0.0140s
+-- add_index("complete_routes", ["user_id", "route_id"], {:name=>"index_complete_routes_on_user_id_and_route_id", :unique=>true, :using=>:btree})
+   -> 0.0124s
+-- add_index("complete_routes", ["user_id"], {:name=>"index_complete_routes_on_user_id", :using=>:btree})
+   -> 0.0122s
+-- create_table("pr_relationships", {:force=>:cascade})
+   -> 0.0163s
+-- add_index("pr_relationships", ["prefecture_id", "route_id"], {:name=>"index_pr_relationships_on_prefecture_id_and_route_id", :unique=>true, :using=>:btree})
+   -> 0.0116s
+-- add_index("pr_relationships", ["prefecture_id"], {:name=>"index_pr_relationships_on_prefecture_id", :using=>:btree})
+   -> 0.0113s
+-- add_index("pr_relationships", ["route_id"], {:name=>"index_pr_relationships_on_route_id", :using=>:btree})
+   -> 0.0098s
+-- create_table("prefecture_comments", {:force=>:cascade})
+   -> 0.0224s
+-- add_index("prefecture_comments", ["prefecture_id"], {:name=>"index_prefecture_comments_on_prefecture_id", :using=>:btree})
+   -> 0.0119s
+-- add_index("prefecture_comments", ["user_id"], {:name=>"index_prefecture_comments_on_user_id", :using=>:btree})
+   -> 0.0102s
+-- create_table("prefectures", {:force=>:cascade})
+   -> 0.0260s
+-- create_table("route_comments", {:force=>:cascade})
+   -> 0.0218s
+-- add_index("route_comments", ["route_id"], {:name=>"index_route_comments_on_route_id", :using=>:btree})
+   -> 0.0102s
+-- add_index("route_comments", ["user_id"], {:name=>"index_route_comments_on_user_id", :using=>:btree})
+   -> 0.0123s
+-- create_table("routes", {:force=>:cascade})
+   -> 0.0311s
+-- create_table("rs_relationships", {:force=>:cascade})
+   -> 0.0175s
+-- add_index("rs_relationships", ["route_id"], {:name=>"index_rs_relationships_on_route_id", :using=>:btree})
+   -> 0.0112s
+-- add_index("rs_relationships", ["station_id", "route_id"], {:name=>"index_rs_relationships_on_station_id_and_route_id", :unique=>true, :using=>:btree})
+   -> 0.0109s
+-- add_index("rs_relationships", ["station_id"], {:name=>"index_rs_relationships_on_station_id", :using=>:btree})
+   -> 0.0146s
+-- create_table("station_comments", {:force=>:cascade})
+   -> 0.0262s
+-- add_index("station_comments", ["station_id"], {:name=>"index_station_comments_on_station_id", :using=>:btree})
+   -> 0.0131s
+-- add_index("station_comments", ["user_id"], {:name=>"index_station_comments_on_user_id", :using=>:btree})
+   -> 0.0098s
+-- create_table("stations", {:force=>:cascade})
+   -> 0.0240s
+-- create_table("us_relationships", {:force=>:cascade})
+   -> 0.0197s
+-- add_index("us_relationships", ["station_id"], {:name=>"index_us_relationships_on_station_id", :using=>:btree})
+   -> 0.0092s
+-- add_index("us_relationships", ["user_id", "station_id"], {:name=>"index_us_relationships_on_user_id_and_station_id", :unique=>true, :using=>:btree})
+   -> 0.0110s
+-- add_index("us_relationships", ["user_id"], {:name=>"index_us_relationships_on_user_id", :using=>:btree})
+   -> 0.0114s
+-- create_table("users", {:force=>:cascade})
+   -> 0.0296s
+-- add_index("users", ["email"], {:name=>"index_users_on_email", :unique=>true, :using=>:btree})
+   -> 0.0080s
+-- add_index("users", ["reset_password_token"], {:name=>"index_users_on_reset_password_token", :unique=>true, :using=>:btree})
+   -> 0.0083s
+-- add_index("users", ["uid", "provider"], {:name=>"index_users_on_uid_and_provider", :unique=>true, :using=>:btree})
+   -> 0.0097s
+-- add_foreign_key("prefecture_comments", "prefectures")
+   -> 0.0059s
+-- add_foreign_key("prefecture_comments", "users")
+   -> 0.0051s
+-- add_foreign_key("route_comments", "routes")
+   -> 0.0048s
+-- add_foreign_key("route_comments", "users")
+   -> 0.0054s
+-- add_foreign_key("station_comments", "stations")
+   -> 0.0061s
+-- add_foreign_key("station_comments", "users")
+   -> 0.0052s
+-- initialize_schema_migrations_table()
+   -> 0.0050s
+-- enable_extension("plpgsql")
+   -> 0.0272s
+-- create_table("complete_prefectures", {:force=>:cascade})
+   -> 0.0187s
+-- add_index("complete_prefectures", ["prefecture_id"], {:name=>"index_complete_prefectures_on_prefecture_id", :using=>:btree})
+   -> 0.0181s
+-- add_index("complete_prefectures", ["user_id", "prefecture_id"], {:name=>"index_complete_prefectures_on_user_id_and_prefecture_id", :unique=>true, :using=>:btree})
+   -> 0.0122s
+-- add_index("complete_prefectures", ["user_id"], {:name=>"index_complete_prefectures_on_user_id", :using=>:btree})
+   -> 0.0161s
+-- create_table("complete_routes", {:force=>:cascade})
+   -> 0.0109s
+-- add_index("complete_routes", ["route_id"], {:name=>"index_complete_routes_on_route_id", :using=>:btree})
+   -> 0.0088s
+-- add_index("complete_routes", ["user_id", "route_id"], {:name=>"index_complete_routes_on_user_id_and_route_id", :unique=>true, :using=>:btree})
+   -> 0.0086s
+-- add_index("complete_routes", ["user_id"], {:name=>"index_complete_routes_on_user_id", :using=>:btree})
+   -> 0.0113s
+-- create_table("pr_relationships", {:force=>:cascade})
+   -> 0.0102s
+-- add_index("pr_relationships", ["prefecture_id", "route_id"], {:name=>"index_pr_relationships_on_prefecture_id_and_route_id", :unique=>true, :using=>:btree})
+   -> 0.0097s
+-- add_index("pr_relationships", ["prefecture_id"], {:name=>"index_pr_relationships_on_prefecture_id", :using=>:btree})
+   -> 0.0076s
+-- add_index("pr_relationships", ["route_id"], {:name=>"index_pr_relationships_on_route_id", :using=>:btree})
+   -> 0.0106s
+-- create_table("prefecture_comments", {:force=>:cascade})
+   -> 0.0141s
+-- add_index("prefecture_comments", ["prefecture_id"], {:name=>"index_prefecture_comments_on_prefecture_id", :using=>:btree})
+   -> 0.0122s
+-- add_index("prefecture_comments", ["user_id"], {:name=>"index_prefecture_comments_on_user_id", :using=>:btree})
+   -> 0.0106s
+-- create_table("prefectures", {:force=>:cascade})
+   -> 0.0167s
+-- create_table("route_comments", {:force=>:cascade})
+   -> 0.0182s
+-- add_index("route_comments", ["route_id"], {:name=>"index_route_comments_on_route_id", :using=>:btree})
+   -> 0.0115s
+-- add_index("route_comments", ["user_id"], {:name=>"index_route_comments_on_user_id", :using=>:btree})
+   -> 0.0122s
+-- create_table("routes", {:force=>:cascade})
+   -> 0.0259s
+-- create_table("rs_relationships", {:force=>:cascade})
+   -> 0.0206s
+-- add_index("rs_relationships", ["route_id"], {:name=>"index_rs_relationships_on_route_id", :using=>:btree})
+   -> 0.0119s
+-- add_index("rs_relationships", ["station_id", "route_id"], {:name=>"index_rs_relationships_on_station_id_and_route_id", :unique=>true, :using=>:btree})
+   -> 0.0103s
+-- add_index("rs_relationships", ["station_id"], {:name=>"index_rs_relationships_on_station_id", :using=>:btree})
+   -> 0.0114s
+-- create_table("station_comments", {:force=>:cascade})
+   -> 0.0165s
+-- add_index("station_comments", ["station_id"], {:name=>"index_station_comments_on_station_id", :using=>:btree})
+   -> 0.0104s
+-- add_index("station_comments", ["user_id"], {:name=>"index_station_comments_on_user_id", :using=>:btree})
+   -> 0.0104s
+-- create_table("stations", {:force=>:cascade})
+   -> 0.0711s
+-- create_table("us_relationships", {:force=>:cascade})
+   -> 0.0085s
+-- add_index("us_relationships", ["station_id"], {:name=>"index_us_relationships_on_station_id", :using=>:btree})
+   -> 0.0112s
+-- add_index("us_relationships", ["user_id", "station_id"], {:name=>"index_us_relationships_on_user_id_and_station_id", :unique=>true, :using=>:btree})
+   -> 0.0097s
+-- add_index("us_relationships", ["user_id"], {:name=>"index_us_relationships_on_user_id", :using=>:btree})
+   -> 0.0121s
+-- create_table("users", {:force=>:cascade})
+   -> 0.0240s
+-- add_index("users", ["email"], {:name=>"index_users_on_email", :unique=>true, :using=>:btree})
+   -> 0.0094s
+-- add_index("users", ["reset_password_token"], {:name=>"index_users_on_reset_password_token", :unique=>true, :using=>:btree})
+   -> 0.0146s
+-- add_index("users", ["uid", "provider"], {:name=>"index_users_on_uid_and_provider", :unique=>true, :using=>:btree})
+   -> 0.0117s
+-- add_foreign_key("prefecture_comments", "prefectures")
+   -> 0.0057s
+-- add_foreign_key("prefecture_comments", "users")
+   -> 0.0045s
+-- add_foreign_key("route_comments", "routes")
+   -> 0.0054s
+-- add_foreign_key("route_comments", "users")
+   -> 0.0063s
+-- add_foreign_key("station_comments", "stations")
+   -> 0.0047s
+-- add_foreign_key("station_comments", "users")
+   -> 0.0052s
+-- initialize_schema_migrations_table()
+   -> 0.0236s
