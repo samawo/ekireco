@@ -50,6 +50,7 @@
                             <tr>
                                 <td><%= link_to route_path(route.id) do %><%= route.name %><% end %>[<%= @user.complete_routes.find_by(route_id: route.id).number %>/<%= route.number %>]  <% if @user.complete_routes.find_by(route_id: route.id).complete %><span class="label label-primary">Complete!</span><% end %></td>
                             </tr>
+                            <% count=count+1 %>
                         <% end %>
                     <% end %>
                     <% if count==0 %>
