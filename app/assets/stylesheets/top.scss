@@ -1,18 +1,17 @@
 // Place all the styles related to the top controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-    html, body {
+html, body {
         width: 100%;
         height: 100%;
         margin: 0;
     }
-    
 .flash {
   color: white;
   padding-top: 10px;
 }
 
-#container {
+.container {
         position: relative;
         width: 100%;
 
@@ -22,27 +21,19 @@
         /* コンテンツ部分の高さが画面より低い場合は画面の高さに合わせる*/
         height: 100%;
         min-height: 100%;
-        background-color: blue;
+        
+  margin-bottom: 40px;
     }
-
+body {
+  margin-bottom: 40px;
+}
 footer {
         /* containerからの絶対位置を定義 */
-        //position: fixed;
+        position: fixed;
         bottom: 0;
         width: 100%;
         height: 40px;
         background-color: #fefefe;
         text-align:center;
-        //position: absolute;
         //position: relative!important;
-        clear: both;
     }
-    
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-body {
-  margin-bottom: 100000px;
-}
