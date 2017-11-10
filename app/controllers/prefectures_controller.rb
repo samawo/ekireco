@@ -1,6 +1,8 @@
 class PrefecturesController < ApplicationController
   def index
-    @prefectures=Prefecture.all
+    @search = Prefecture.search(params[:q]) # この行を追加
+    @prefectures = @search.result #この行を修正
+    #@prefectures=Prefecture.all
     @prefectures=@prefectures.sort{|a,b| a.id<=>b.id}
   end
 

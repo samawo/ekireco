@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+#  get 'searches/index'
+
+
   get 'twitter/tweet'
 
   get 'tweet/tweet'

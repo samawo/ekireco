@@ -60,3 +60,5 @@ gem 'mini_magick'
 gem 'rails_admin'
 gem 'cancan'
 gem 'twitter'
+gem 'rails-i18n' # この行を追加(ransackには関係ないけどdate_select用)
+gem 'ransack' 

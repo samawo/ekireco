@@ -1,0 +1,29 @@
+<h1>Listing topics</h1>
+<%= search_form_for @search, url: searches_index_path do |f| %>
+  <%= f.label :name_cont, '名前' %>
+  <%= f.text_field :name_cont %>
+  <div>
+    <%= f.submit '検索する' %>
+  </div>
+<% end %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>User</th>
+    <th>Created At</th><!--この行を修正-->
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stations.each do |topic| %>
+  <tr>
+      
+    <td><%= topic.name %></td><!--この行を修正-->
+    <td><%= topic.created_at.strftime('%Y/%m/%d %H:%M') %></td><!--この行を修正-->
+    </tr>
+<% end %>
+</table>
+
+<br />

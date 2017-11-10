@@ -1,3 +1,14 @@
 <h1>駅一覧</h1>
-
+<div class="row">
+    <div class="form-group">
+        <%= search_form_for @search, url: stations_path do |f| %>
+            <div class="col-xs-10">
+                <%= f.text_field :name_cont ,class: "form-control" ,id: "inputDefault" %>
+            </div>
+            <div class="col-xs-2">
+                <%= f.submit '検索する' , class: "btn btn-primary" %>
+            </div>
+        <% end %>
+    </div>
+</div>
 <%= render 'layouts/station_index',stations: @stations  %>

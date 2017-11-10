@@ -1,8 +1,22 @@
 <h1>路線一覧</h1>
-
-<ul>
+<div class="row">
+    <div class="form-group">
+        <%= search_form_for @search, url: routes_path do |f| %>
+            <div class="col-xs-10">
+                <%= f.text_field :name_cont ,class: "form-control" ,id: "inputDefault" %>
+            </div>
+            <div class="col-xs-2">
+                <%= f.submit '検索する' , class: "btn btn-primary" %>
+            </div>
+        <% end %>
+    </div>
+</div>
+<div class="bs-component">
+            <table class="table table-striped table-hover ">
+<tbody>
 <% @routes.each do |route| %>
-    <li>
+    <tr>
+                            <td>
         <% if route.active %>
             <%= link_to route_path(route.id) do %>
                 <%= route.name %>(<%= route.number %>駅)
@@ -14,6 +28,9 @@
             <% end %>
             <% if user_signed_in? %>[<%= current_user.complete_routes.find_by(route_id: route.id).number %>/<%= route.number %>]  <% if current_user.complete_routes.find_by(route_id: route.id).complete %><span class="label label-primary">Complete!</span><% end %><% end %>
         <% end %>
-    </li>
+    </td>
+                        </tr>
 <% end %>
-</ul>
+</tbody>
+            </table>
+        </div>

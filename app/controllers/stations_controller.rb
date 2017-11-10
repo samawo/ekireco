@@ -1,6 +1,8 @@
 class StationsController < ApplicationController
   def index
-    @stations=Station.all
+    @search = Station.search(params[:q]) # この行を追加
+    @stations = @search.result #この行を修正
+    # @stations=Station.all
     @stations=@stations.sort{|a,b| a.id<=>b.id}
   end
 
