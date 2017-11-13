@@ -1,8 +1,13 @@
 class RoutesController < ApplicationController
   def index
-    @search=Route.search(params[:q])
-    @routes=@search.result
-    # @routes=Route.all
+    if params[:q] != nil
+      params[:q]['name_cont_all'] = params[:q]['name_cont_all'].split(/[\p{blank}\s]+/)
+      @search = Route.ransack(params[:q]) # この行を追加
+      @routes = @search.result #この行を修正
+    else
+      @search = Route.ransack(params[:q]) # この行を追加
+      @routes = @search.result #この行を修正
+    end
     @routes=@routes.sort{|a,b| a.id<=>b.id}
   end
 

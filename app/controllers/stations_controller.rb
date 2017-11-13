@@ -1,8 +1,13 @@
 class StationsController < ApplicationController
   def index
-    @search = Station.search(params[:q]) # この行を追加
-    @stations = @search.result #この行を修正
-    # @stations=Station.all
+    if params[:q] != nil
+      params[:q]['name_cont_all'] = params[:q]['name_cont_all'].split(/[\p{blank}\s]+/)
+      @search = Station.ransack(params[:q]) # この行を追加
+      @stations = @search.result #この行を修正
+    else
+      @search = Station.ransack(params[:q]) # この行を追加
+      @stations = @search.result #この行を修正
+    end
     @stations=@stations.sort{|a,b| a.id<=>b.id}
   end
 
